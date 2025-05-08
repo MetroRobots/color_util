@@ -23,7 +23,7 @@ target_include_directories(color_util PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
 )
-ament_target_dependencies(color_util
+target_link_libraries(color_util PUBLIC
   std_msgs
 )
 
