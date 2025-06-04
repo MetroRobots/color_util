@@ -24,7 +24,7 @@ target_include_directories(color_util PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 target_link_libraries(color_util PUBLIC
-  std_msgs
+  ${std_msgs_TARGETS}
 )
 
 if(BUILD_TESTING)
@@ -34,10 +34,10 @@ if(BUILD_TESTING)
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
   )
-  ament_target_dependencies(${PROJECT_NAME}_utest
-    std_msgs
-  )
-  target_link_libraries(${PROJECT_NAME}_utest color_util)
+  target_link_libraries(${PROJECT_NAME}_utest
+    color_util
+    ${std_msgs_TARGETS}
+)
 
 endif()
 
