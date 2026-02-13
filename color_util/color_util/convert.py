@@ -55,11 +55,11 @@ def convert_color_to_hsv(rgba, epsilon=0.00001):
     out.a = rgba.a
 
     # Three way max/min
-    min_v = rgba.r < rgba.g if rgba.r else rgba.g
-    min_v = min_v < rgba.b if min_v else rgba.b
+    min_v = rgba.r if rgba.r < rgba.g else rgba.g
+    min_v = min_v if min_v < rgba.b else rgba.b
 
-    max_v = rgba.r > rgba.g if rgba.r else rgba.g
-    max_v = max_v > rgba.b if max_v else rgba.b
+    max_v = rgba.r if rgba.r > rgba.g else rgba.g
+    max_v = max_v if max_v > rgba.b else rgba.b
 
     # Value Channel
     out.v = max_v
@@ -115,9 +115,9 @@ def convert_color_to_rgb(hsva, epsilon=0.00001):
         return ColorRGBA(q, hsva.v, p, hsva.a)
     elif i == 2:
         return ColorRGBA(p, hsva.v, t, hsva.a)
-    if i == 3:
+    elif i == 3:
         return ColorRGBA(p, q, hsva.v, hsva.a)
-    if i == 4:
+    elif i == 4:
         return ColorRGBA(t, p, hsva.v, hsva.a)
     else:  # if i == 5:
         return ColorRGBA(hsva.v, p, q, hsva.a)
