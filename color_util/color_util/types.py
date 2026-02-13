@@ -6,6 +6,10 @@ class GenericColorRGBA:
         self.b = b
         self.a = a
 
+    @staticmethod
+    def fields():
+        return 'rgba'
+
     def __repr__(self):
         return f'(r: {self.r}, g: {self.g}, b: {self.b}, a: {self.a})'
 
@@ -16,6 +20,10 @@ class GenericColorHSVA:
         self.s = s
         self.v = v
         self.a = a
+
+    @staticmethod
+    def fields():
+        return 'hsva'
 
     def __repr__(self):
         return f'(h: {self.h}, s: {self.s}, v: {self.v}, a: {self.a})'

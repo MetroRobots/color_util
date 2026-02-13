@@ -2,6 +2,7 @@ from .types import ColorRGBA24
 from enum import Enum
 
 
+# Source: Slightly modified from https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
 class NamedColor(Enum):
     TRANSPARENT = ColorRGBA24(0x00, 0x00, 0x00, 0x00)
 
