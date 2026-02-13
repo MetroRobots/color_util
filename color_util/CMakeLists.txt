@@ -38,8 +38,10 @@ if(BUILD_TESTING)
   target_link_libraries(${PROJECT_NAME}_utest
     color_util
     ${std_msgs_TARGETS}
-)
+  )
 
+  find_package(ament_cmake_pytest REQUIRED)
+  ament_add_pytest_test(utest test/utest.py)
 endif()
 
 install(TARGETS color_util

@@ -45,9 +45,9 @@ def convert_color_to_int(float_color):
 # Colorspace conversions
 # based on
 # https://stackoverflow.com/questions/3018313/algorithm-to-convert-rgb-to-hsv-and-hsv-to-rgb-in-range-0-255-for-both
-def convert_to_hsv(rgba, epsilon=0.00001):
+def convert_color_to_hsv(rgba, epsilon=0.00001):
     if isinstance(rgba, ColorRGBA24):
-        return convert_color_to_int(convert_to_hsv(convert_color_to_float(rgba)))
+        return convert_color_to_int(convert_color_to_hsv(convert_color_to_float(rgba)))
 
     out = ColorHSVA()
 
@@ -90,9 +90,9 @@ def convert_to_hsv(rgba, epsilon=0.00001):
     return out
 
 
-def convert_to_rgb(hsva, epsilon=0.00001):
+def convert_color_to_rgb(hsva, epsilon=0.00001):
     if isinstance(hsva, ColorHSVA24):
-        return convert_color_to_int(convert_to_rgb(convert_color_to_float(hsva)))
+        return convert_color_to_int(convert_color_to_rgb(convert_color_to_float(hsva)))
 
     if hsva.s <= 0.0:  # < is invalid for valid input
         # Grayscale
@@ -124,12 +124,12 @@ def convert_to_rgb(hsva, epsilon=0.00001):
 
 
 # To ROS Msg
-def convert_to_msg(color):
+def convert_color_to_msg(color):
     if isinstance(color, ColorRGBA):
         return ColorRGBAMsg(color.r, color.g, color.b, color.a)
     elif isinstance(color, ColorRGBA24):
-        return convert_to_msg(convert_color_to_float(color))
+        return convert_color_to_msg(convert_color_to_float(color))
     elif isinstance(color, (ColorHSVA, ColorHSVA24)):
-        return convert_to_msg(convert_to_rgb(color))
+        return convert_color_to_msg(convert_color_to_rgb(color))
     else:
-        raise TypeError(f'Cannot call convert_to_msg with type {type(color)}')
+        raise TypeError(f'Cannot call convert_color_to_msg with type {type(color)}')
