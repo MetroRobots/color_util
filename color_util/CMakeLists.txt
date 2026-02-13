@@ -16,6 +16,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(std_msgs REQUIRED)
 
 add_library(color_util src/convert.cpp)
@@ -50,6 +51,7 @@ install(TARGETS color_util
 install(DIRECTORY include/
         DESTINATION include
 )
+ament_python_install_package(${PROJECT_NAME})
 ament_export_include_directories(include)
 ament_export_targets(export_color_util)
 
