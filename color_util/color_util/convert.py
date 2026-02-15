@@ -20,7 +20,7 @@ def convert_color_to_float(int_color):
     else:
         raise TypeError(f'Cannot call convert_color_to_float with type {type(int_color)}')
 
-    for field in int_color.fields():
+    for field in int_color.__dataclass_fields__:
         int_val = getattr(int_color, field)
         setattr(float_color, field, int24_to_float(int_val))
 
@@ -35,7 +35,7 @@ def convert_color_to_int(float_color):
     else:
         raise TypeError(f'Cannot call convert_color_to_int with type {type(float_color)}')
 
-    for field in float_color.fields():
+    for field in float_color.__dataclass_fields__:
         float_val = getattr(float_color, field)
         setattr(int_color, field, float_to_int24(float_val))
 
