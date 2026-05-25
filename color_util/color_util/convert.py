@@ -126,7 +126,12 @@ def convert_color_to_rgb(hsva, epsilon=0.00001):
 # To ROS Msg
 def convert_color_to_msg(color):
     if isinstance(color, ColorRGBA):
-        return ColorRGBAMsg(color.r, color.g, color.b, color.a)
+        msg = ColorRGBAMsg()
+        msg.r = color.r
+        msg.g = color.g
+        msg.b = color.b
+        msg.a = color.a
+        return msg
     elif isinstance(color, ColorRGBA24):
         return convert_color_to_msg(convert_color_to_float(color))
     elif isinstance(color, (ColorHSVA, ColorHSVA24)):
