@@ -13,6 +13,8 @@ repos:
   - id: check-case-conflict
   - id: check-xml
   - id: check-yaml
+  - id: check-ast
+  - id: double-quote-string-fixer
   rev: v6.0.0
 - repo: https://github.com/codespell-project/codespell
   hooks:
@@ -24,5 +26,13 @@ repos:
   hooks:
   - id: clang-format
   rev: v22.1.2
+- repo: https://github.com/hhatto/autopep8
+  hooks:
+  - id: autopep8
+  rev: v2.3.2
+- repo: https://github.com/PyCQA/flake8
+  hooks:
+  - id: flake8
+  rev: 7.3.0
 ci:
   autoupdate_schedule: quarterly
