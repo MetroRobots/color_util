@@ -1,6 +1,7 @@
 from color_util import ColorHSVA, ColorHSVA24, ColorRGBA, ColorRGBA24
 from color_util import convert_color_to_float, convert_color_to_int
 from color_util import convert_color_to_rgb, convert_color_to_hsv
+from color_util import NamedColor, NamedColor24
 
 import pytest
 
@@ -67,3 +68,24 @@ def test_random_color_check():
 
     # gray
     check_conversion(0.8, 0.8, 0.8, 0.0, 0.0, 0.8)
+
+
+def test_named_colors():
+    named_colors_ints = list(NamedColor24)
+    assert len(named_colors_ints) == 55
+    transp = named_colors_ints[0]
+    assert transp.a == 0
+
+    red = named_colors_ints[1]
+    assert red.r == 0xe6
+
+    assert NamedColor24.RED.r == 0xe6
+
+    named_colors_floats = list(NamedColor)
+    transp = named_colors_floats[0]
+    assert transp.a == 0.0, transp
+
+    red = named_colors_floats[1]
+    assert red.r == pytest.approx(0xe6 / 0xff, abs=0.001)
+
+    assert NamedColor.RED.r == 0xe6 / 0xff

@@ -8,6 +8,15 @@ class ColorRGBA:
     b: float = 0.0
     a: float = 1.0
 
+    def __post_init__(self):
+        """Handles case where first arg is ColorRGBA, meaning it was meant to used be a copy constructor."""
+        if isinstance(self.r, ColorRGBA):
+            base = self.r
+            self.r = base.r
+            self.g = base.g
+            self.b = base.b
+            self.a = base.a
+
 
 @dataclass
 class ColorRGBA24:

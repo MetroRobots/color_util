@@ -1,10 +1,10 @@
 from .convert import convert_color_to_float
-from .types import ColorRGBA24
+from .types import ColorRGBA24, ColorRGBA
 from enum import Enum
 
 
 # Source: Slightly modified from https://sashat.me/2017/01/11/list-of-20-simple-distinct-colors/
-class NamedColor(ColorRGBA24, Enum):
+class NamedColor24(ColorRGBA24, Enum):
     __str__ = ColorRGBA24.__str__
     __repr__ = ColorRGBA24.__repr__
 
@@ -67,7 +67,10 @@ class NamedColor(ColorRGBA24, Enum):
     DARK_NAVY = (0x00, 0x00, 0x42)
     DARK_GREY = (0x75, 0x75, 0x75)
 
-    @staticmethod
-    def FloatColors():
-        for color in NamedColor:
-            yield convert_color_to_float(color)
+
+# Construct NamedColor from NamedColor24
+NamedColor = Enum(
+    value='NamedColor',
+    names=[(c.name, convert_color_to_float(c)) for c in NamedColor24],
+    type=ColorRGBA,
+)
